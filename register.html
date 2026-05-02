@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velour — Haydovchi Portali</title>
+<link rel="stylesheet" href="../style.css">
+<script src="../velour.js"></script>
+</head>
+<body>
+
+<div id="nav-root"></div>
+
+<!-- ===== KIRISH ESHIGI ===== -->
+<div id="gate" style="min-height:80vh;display:flex;align-items:center;justify-content:center;padding:2rem;">
+  <div style="background:#fff;border:1px solid var(--border);padding:3rem;max-width:420px;width:100%;text-align:center;">
+    <div style="font-family:'Playfair Display',serif;font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;" id="g-tag"></div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);margin-bottom:0.5rem;" id="g-h2"></h2>
+    <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:2rem;line-height:1.8;" id="g-sub"></p>
+    <div class="field">
+      <label id="g-lbl" style="display:block;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-mid);margin-bottom:0.45rem;"></label>
+      <input type="password" id="acode" style="width:100%;background:#fff;border:1px solid var(--border);padding:0.72rem 1rem;font-family:'Montserrat',sans-serif;font-size:1rem;color:var(--text-dark);outline:none;text-align:center;letter-spacing:4px;transition:border-color 0.2s;" id="g-inp">
+    </div>
+    <div id="gerr" style="font-size:0.75rem;color:var(--crimson);margin-bottom:0.8rem;min-height:1.2em;"></div>
+    <button class="btn-primary" style="width:100%;" id="g-btn" onclick="checkAccess()"></button>
+    <div style="margin-top:1.5rem;font-size:0.72rem;color:var(--text-muted);" id="g-note"></div>
+  </div>
+</div>
+
+<!-- ===== RO'YXATDAN O'TISH FORMASI ===== -->
+<div id="regwrap" style="display:none;">
+  <div class="page-header-dark">
+    <div class="section-tag" id="r-tag"></div>
+    <h2 id="r-h2"></h2>
+    <p id="r-sub"></p>
+  </div>
+
+  <div class="form-wrap">
+    <div class="steps">
+      <button class="step-tab active" id="tab1"></button>
+      <button class="step-tab" id="tab2"></button>
+      <button class="step-tab" id="tab3"></button>
+      <button class="step-tab" id="tab4"></button>
+    </div>
+
+    <!-- 1-qadam -->
+    <div class="form-step active" id="step-1">
+      <div class="step-title" id="s1t"></div>
+      <div class="step-sub" id="s1s"></div>
+      <div class="field-row">
+        <div class="field"><label id="l-fn"></label><input id="ffname" type="text" required></div>
+        <div class="field"><label id="l-ln"></label><input id="flname" type="text" required></div>
+      </div>
+      <div class="field"><label id="l-em"></label><input id="femail" type="email" required></div>
+      <div class="field"><label id="l-ph"></label><input id="fphone" type="tel" required></div>
+      <div class="field-row">
+        <div class="field">
+          <label id="l-ci"></label>
+          <select id="fcity" required>
+            <option value="" id="csel"></option>
+            <option>Tashkent</option><option>Samarkand</option><option>Bukhara</option>
+            <option>Namangan</option><option>Andijan</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field"><label id="l-li"></label><input id="flicence" type="text" required></div>
+      </div>
+      <div class="field"><label id="l-ex"></label><input id="fexp" type="number" min="1" max="60" required></div>
+      <div class="form-nav"><div></div><button class="btn-next" id="bn1" onclick="goNext(1)"></button></div>
+    </div>
+
+    <!-- 2-qadam -->
+    <div class="form-step" id="step-2">
+      <div class="step-title" id="s2t"></div>
+      <div class="step-sub" id="s2s"></div>
+      <div class="field-row">
+        <div class="field"><label id="l-br"></label><input id="fbrand" type="text" required></div>
+        <div class="field"><label id="l-mo"></label><input id="fmodel" type="text" required></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label id="l-yr"></label><input id="fyear" type="number" min="2000" max="2026" required></div>
+        <div class="field"><label id="l-co"></label><input id="fcolour" type="text"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label id="l-pl"></label><input id="fplate" type="text"></div>
+        <div class="field">
+          <label id="l-se"></label>
+          <select id="fseats"><option>2</option><option>4</option><option selected>5</option><option>6</option><option>7</option><option>8</option></select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label id="l-tr"></label>
+          <select id="ftrans"><option>Automatic</option><option>Manual</option><option>Hybrid</option><option>Electric</option></select>
+        </div>
+        <div class="field">
+          <label id="l-ca"></label>
+          <select id="fcat"><option>Luxury Sedan</option><option>Executive SUV</option><option>Prestige Saloon</option><option>Grand Tourer</option><option>Sports</option><option>Other</option></select>
+        </div>
+      </div>
+      <div class="field"><label id="l-ra"></label><input id="frate" type="number" min="10" required></div>
+      <div class="field"><label id="l-de"></label><textarea id="fdesc"></textarea></div>
+      <div class="form-nav">
+        <button class="btn-back" id="bb2" onclick="goPrev(2)"></button>
+        <button class="btn-next" id="bn2" onclick="goNext(2)"></button>
+      </div>
+    </div>
+
+    <!-- 3-qadam -->
+    <div class="form-step" id="step-3">
+      <div class="step-title" id="s3t"></div>
+      <div class="step-sub" id="s3s"></div>
+      <div class="field" style="margin-bottom:2rem;">
+        <label><span id="l-cp"></span> <span id="l-cph" style="text-transform:none;letter-spacing:0;font-size:0.78rem;color:var(--text-muted);font-weight:400;"></span></label>
+        <div class="upload-zone" id="carzone" onclick="document.getElementById('carupload').click()">
+          <div class="upload-icon">&#9672;</div>
+          <p><strong id="uc-s"></strong><br><span id="uc-d"></span><br><small id="uc-z"></small></p>
+          <input type="file" id="carupload" multiple accept="image/jpeg,image/png,image/webp" style="display:none">
+        </div>
+        <div class="img-previews" id="carprev"></div>
+      </div>
+      <div class="field">
+        <label><span id="l-dp"></span> <span id="l-dph" style="text-transform:none;letter-spacing:0;font-size:0.78rem;color:var(--text-muted);font-weight:400;"></span></label>
+        <div class="upload-zone" id="drvzone" onclick="document.getElementById('drvupload').click()">
+          <div class="upload-icon">&#9673;</div>
+          <p><strong id="ud-s"></strong><br><span id="ud-d"></span><br><small id="ud-z"></small></p>
+          <input type="file" id="drvupload" accept="image/jpeg,image/png,image/webp" style="display:none">
+        </div>
+        <div class="img-previews" id="drvprev"></div>
+      </div>
+      <div class="form-nav">
+        <button class="btn-back" id="bb3" onclick="goPrev(3)"></button>
+        <button class="btn-next" id="bn3" onclick="goNext(3)"></button>
+      </div>
+    </div>
+
+    <!-- 4-qadam -->
+    <div class="form-step" id="step-4">
+      <div class="step-title" id="s4t"></div>
+      <div class="step-sub" id="s4s"></div>
+      <div class="review-box"><div class="review-box-label" id="rv-dl"></div><div class="review-grid" id="rvpers"></div></div>
+      <div class="review-box"><div class="review-box-label" id="rv-vl"></div><div class="review-grid" id="rvveh"></div></div>
+      <div style="background:var(--cream-dark);border:1px solid var(--border);padding:1rem;font-size:0.78rem;color:var(--text-muted);line-height:1.9;margin-bottom:1.5rem;" id="rv-note"></div>
+      <div class="form-nav">
+        <button class="btn-back" id="bb4" onclick="goPrev(4)"></button>
+        <button class="btn-submit" id="bsub" onclick="submitListing()"></button>
+      </div>
+    </div>
+
+    <!-- Muvaffaqiyat -->
+    <div id="succbox" style="text-align:center;padding:3rem 1rem;display:none;">
+      <div style="width:72px;height:72px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><polyline points="5,15 13,23 25,8" stroke="#D4AF55" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);margin-bottom:0.5rem;" id="suc-h"></h3>
+      <p style="color:var(--text-muted);font-size:0.82rem;line-height:1.9;" id="suc-p"></p>
+      <div style="width:60px;height:1px;background:var(--gold);margin:1.8rem auto;"></div>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;">
+        <a class="btn-primary" href="browse.html" id="suc-v"></a>
+        <a class="btn-outline" href="../index.html" id="suc-h2"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<footer style="background:var(--navy);color:rgba(250,247,242,0.5);text-align:center;padding:2rem;font-size:0.72rem;letter-spacing:1px;border-top:1px solid rgba(184,151,42,0.3);">
+  <span id="foot"></span>
+</footer>
+
+<script>
+document.getElementById('nav-root').innerHTML = buildNavSub();
+
+function s(id,k){var e=document.getElementById(id);if(e)e.textContent=t(k);}
+function ph(id,k){var e=document.getElementById(id);if(e)e.placeholder=t(k);}
+
+/* Gate */
+s('g-tag','reg_tag'); s('g-h2','reg_h2'); s('g-sub','reg_sub');
+s('g-lbl','reg_access_label'); ph('acode','reg_access_ph'); s('g-btn','reg_access_btn');
+var lang=getLang();
+document.getElementById('g-note').innerHTML='<span style="color:var(--gold)">\u2726</span> '+(lang==='uz'?"Faqat ro\u2019yxatdan o\u2019tgan haydovchilar uchun":"Только для зарегистрированных водителей");
+
+/* Reg header */
+s('r-tag','reg_tag'); s('r-h2','reg_h2'); s('r-sub','reg_sub');
+
+/* Tabs */
+s('tab1','tab1'); s('tab2','tab2'); s('tab3','tab3'); s('tab4','tab4');
+
+/* Step 1 */
+s('s1t','step1_title'); s('s1s','step1_sub');
+s('l-fn','lbl_fname'); ph('ffname','ph_fname');
+s('l-ln','lbl_lname'); ph('flname','ph_lname');
+s('l-em','lbl_email'); ph('femail','ph_email');
+s('l-ph','lbl_phone'); ph('fphone','ph_phone');
+s('l-ci','lbl_city'); s('csel','city_select');
+s('l-li','lbl_licence'); ph('flicence','ph_licence');
+s('l-ex','lbl_exp'); ph('fexp','ph_exp');
+
+/* Step 2 */
+s('s2t','step2_title'); s('s2s','step2_sub');
+s('l-br','lbl_brand'); ph('fbrand','ph_brand');
+s('l-mo','lbl_model'); ph('fmodel','ph_model');
+s('l-yr','lbl_year'); ph('fyear','ph_year');
+s('l-co','lbl_colour'); ph('fcolour','ph_colour');
+s('l-pl','lbl_plate'); ph('fplate','ph_plate');
+s('l-se','lbl_seats'); s('l-tr','lbl_trans'); s('l-ca','lbl_cat');
+s('l-ra','lbl_rate'); ph('frate','ph_rate');
+s('l-de','lbl_desc'); ph('fdesc','ph_desc');
+
+/* Step 3 */
+s('s3t','step3_title'); s('s3s','step3_sub');
+s('l-cp','lbl_car_photos'); s('l-cph','car_photos_hint');
+s('uc-s','upload_car_strong'); s('uc-d','upload_car_desc'); s('uc-z','upload_car_size');
+s('l-dp','lbl_driver_photo'); s('l-dph','driver_photo_hint');
+s('ud-s','upload_drv_strong'); s('ud-d','upload_drv_desc'); s('ud-z','upload_drv_size');
+
+/* Step 4 */
+s('s4t','step4_title'); s('s4s','step4_sub');
+s('rv-dl','rev_driver'); s('rv-vl','rev_vehicle'); s('rv-note','rev_note');
+
+/* Buttons */
+s('bn1','btn_continue');
+s('bb2','btn_back'); s('bn2','btn_continue');
+s('bb3','btn_back'); s('bn3','btn_review');
+s('bb4','btn_back'); s('bsub','btn_submit');
+
+/* Success */
+s('suc-h','success_h3'); s('suc-p','success_p');
+s('suc-v','success_view'); s('suc-h2','success_home');
+
+document.getElementById('foot').innerHTML=t('footer').replace('VELOUR','<span style="color:var(--gold-light)">VELOUR</span>');
+
+/* ===== KIRISH TEKSHIRUVI ===== */
+var DRIVER_CODE = 'velour2024'; /* ← shu parolni o'zgartiring */
+
+function checkAccess(){
+  var code=document.getElementById('acode').value.trim();
+  if(code===DRIVER_CODE){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('regwrap').style.display='block';
+    window.scrollTo(0,0);
+  } else {
+    document.getElementById('gerr').textContent=t('reg_wrong_code');
+    document.getElementById('acode').style.borderColor='var(--crimson)';
+    setTimeout(function(){ document.getElementById('gerr').textContent=''; document.getElementById('acode').style.borderColor=''; },3000);
+  }
+}
+document.getElementById('acode').addEventListener('keydown',function(e){if(e.key==='Enter')checkAccess();});
+
+/* ===== FOTO YUKLASH ===== */
+var carB64=[];
+var drvB64='';
+
+function fileToB64(file){
+  return new Promise(function(res,rej){
+    var r=new FileReader();
+    r.onload=function(e){res(e.target.result);};
+    r.onerror=rej;
+    r.readAsDataURL(file);
+  });
+}
+
+document.getElementById('carupload').addEventListener('change',async function(){
+  carB64=[];
+  var prev=document.getElementById('carprev'); prev.innerHTML='';
+  for(var i=0;i<this.files.length;i++){
+    var b=await fileToB64(this.files[i]);
+    carB64.push(b);
+    var img=document.createElement('img'); img.src=b; prev.appendChild(img);
+  }
+  document.getElementById('carzone').style.borderColor=carB64.length?'var(--gold)':'';
+});
+
+document.getElementById('drvupload').addEventListener('change',async function(){
+  if(!this.files[0])return;
+  drvB64=await fileToB64(this.files[0]);
+  var prev=document.getElementById('drvprev'); prev.innerHTML='';
+  var img=document.createElement('img'); img.src=drvB64; prev.appendChild(img);
+  document.getElementById('drvzone').style.borderColor='var(--gold)';
+});
+
+/* ===== QADAMLAR ===== */
+function goNext(n){ if(validate(n)){ if(n===3) buildReview(); goStep(n+1); } }
+function goPrev(n){ goStep(n-1); }
+
+function goStep(n){
+  document.querySelectorAll('.form-step').forEach(function(el){el.classList.remove('active');});
+  var st=document.getElementById('step-'+n); if(st) st.classList.add('active');
+  document.querySelectorAll('.step-tab').forEach(function(tab,i){
+    tab.classList.remove('active','done');
+    if(i+1===n) tab.classList.add('active');
+    else if(i+1<n) tab.classList.add('done');
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function validate(n){
+  var fields=document.querySelectorAll('#step-'+n+' [required]');
+  for(var i=0;i<fields.length;i++){
+    if(!fields[i].value.trim()){
+      fields[i].style.borderColor='var(--crimson)';
+      fields[i].focus();
+      showToast(t('toast_required'));
+      var f=fields[i];
+      setTimeout(function(){f.style.borderColor='';},2000);
+      return false;
+    }
+  }
+  return true;
+}
+
+function v(id){ return (document.getElementById(id)||{}).value||''; }
+
+function buildReview(){
+  var mkR=function(lbl,val){ return '<div><div style="font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;">'+lbl+'</div><div>'+(val||'&mdash;')+'</div></div>'; };
+  document.getElementById('rvpers').innerHTML =
+    mkR(t('rev_name'),v('ffname')+' '+v('flname'))
+    +mkR(t('rev_email2'),v('femail'))
+    +mkR(t('rev_phone2'),v('fphone'))
+    +mkR(t('rev_city2'),v('fcity'))
+    +mkR(t('rev_lic'),v('flicence'))
+    +mkR(t('rev_exp2'),v('fexp')+t('years_sfx'));
+  document.getElementById('rvveh').innerHTML =
+    mkR(t('rev_vehicle2'),v('fbrand')+' '+v('fmodel'))
+    +mkR(t('rev_year'),v('fyear'))
+    +mkR(t('rev_col'),v('fcolour'))
+    +mkR(t('rev_plate2'),v('fplate'))
+    +mkR(t('rev_cat2'),v('fcat'))
+    +mkR(t('rev_trans2'),v('ftrans'))
+    +mkR(t('rev_seats2'),v('fseats'))
+    +mkR(t('rev_rate2'),'$'+v('frate'));
+}
+
+function submitListing(){
+  saveCar({
+    firstName:v('ffname'),lastName:v('flname'),email:v('femail'),phone:v('fphone'),
+    city:v('fcity'),licence:v('flicence'),experience:v('fexp'),
+    brand:v('fbrand'),model:v('fmodel'),year:v('fyear'),colour:v('fcolour'),
+    plate:v('fplate'),seats:v('fseats'),transmission:v('ftrans'),category:v('fcat'),
+    rate:v('frate'),description:v('fdesc'),
+    carPhotos:carB64.slice(),driverPhoto:drvB64
+  });
+  document.querySelectorAll('.form-step').forEach(function(el){el.style.display='none';});
+  document.querySelector('.steps').style.display='none';
+  document.getElementById('succbox').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showToast(msg){
+  var el=document.getElementById('toast');
+  el.textContent=msg; el.classList.add('show');
+  setTimeout(function(){el.classList.remove('show');},3000);
+}
+</script>
+</body>
+</html>
